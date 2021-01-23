@@ -1,0 +1,24 @@
+@tailwind base;
+
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write your own custom component styles here */
+
+.app-popup {
+  max-height: 300px;
+  width: 250px;
+  @apply bg-white;
+  @apply mx-auto;
+  @apply overflow-y-auto;
+  @apply relative;
+}
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
