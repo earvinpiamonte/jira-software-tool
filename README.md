@@ -2,13 +2,15 @@
 
 A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.
 
+This project was previously [https://github.com/earvinpiamonte/jiraserver-tools-chrome](https://github.com/earvinpiamonte/jiraserver-tools-chrome) but then I decided to re-initalize the project with React.
+
 ## Built with
 
 - [Create React App](https://create-react-app.dev/) - config override with [CRACO](https://github.com/gsoft-inc/craco)
 - [Tailwind CSS](https://tailwindcss.com/)
 - passion
 
-## Get on Chrome Web Store
+## Add to Google Chrome from Web Store
 
 [Add to Chrome](https://chrome.google.com/webstore/detail/jira-server-tools/nffiapablabogfkpckmgbeiocccifbed)
 
@@ -44,20 +46,20 @@ npm run build
 
 7. Click on `Load unpacked`.
 
-8. Find the project `jira-server-tools/` and open it. Select `build/` as the extension directory
+8. Find the project `jira-server-tools/` and open it. Select `build/` as the extension directory.
 
 9. Jira Server Tools extension should be added to Chrome at this point.
 
-## Development
+## Development story
 
 Documented below are the additions and updates I made to be able to run this React project on a Google Chrome browser.
 
 ### Updates on `package.json`
 
-- replace `react-scripts` with `craco` - read more at [https://tailwindcss.com/docs/guides/create-react-app#install-and-configure-craco](https://tailwindcss.com/docs/guides/create-react-app#install-and-configure-craco).
-- add `INLINE_RUNTIME_CHUNK=false` on `"build"` - used to bundle script on a separate file.
-- add `npm run build:chrome-scripts` on `"build"` - additional command to build Chrome scripts.
-- add `"build:chrome-scripts": "npx webpack -c webpack.chrome.config.js"` - custom command to build Chrome scripts.
+- Replaced `react-scripts` with `craco` - read more at [https://tailwindcss.com/docs/guides/create-react-app#install-and-configure-craco](https://tailwindcss.com/docs/guides/create-react-app#install-and-configure-craco).
+- Added `INLINE_RUNTIME_CHUNK=false` on `"build"` - used to bundle script on a separate file.
+- Added `npm run build:chrome-scripts` on `"build"` - additional command to build Chrome scripts.
+- Added `"build:chrome-scripts": "npx webpack -c webpack.chrome.config.js"` - custom command to build Chrome scripts.
 
 Final `"scripts"` block on `package.json`:
 
