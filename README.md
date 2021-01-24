@@ -2,8 +2,6 @@
 
 A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.
 
-This project was previously [https://github.com/earvinpiamonte/jiraserver-tools-chrome](https://github.com/earvinpiamonte/jiraserver-tools-chrome) but then I decided to re-initalize the project with React.
-
 ## Built with
 
 - [Create React App](https://create-react-app.dev/) - config override with [CRACO](https://github.com/gsoft-inc/craco)
