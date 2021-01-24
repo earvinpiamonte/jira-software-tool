@@ -10,6 +10,7 @@ const Options = ({ manifest }: any) => {
         <div className="md:container md:mx-auto px-4">
           <div className="mb-4">
             <h1 className="text-3xl mb-4">{manifest?.name}</h1>
+            <h2 className="text-lg mb-2">About</h2>
             <p className="mb-2">{manifest?.description}</p>
             <p className="mb-2">
               This project is written, designed and built by{" "}
@@ -25,7 +26,28 @@ const Options = ({ manifest }: any) => {
             </p>
           </div>
           <div className="mb-4">
-            <p className="mb-2">Version: {manifest?.version}</p>
+            <h2 className="text-lg mb-2">Credits</h2>
+            <p>
+              Jira Software images are owned by{" "}
+              <a
+                href={`https://www.atlassian.com/`}
+                className="underline text-blue-600 font-semibold"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Atlassian
+              </a>{" "}
+              and generated using{" "}
+              <a
+                href={`https://realfavicongenerator.net/`}
+                className="underline text-blue-600 font-semibold"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                RealFaviconGenerator.net
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>
