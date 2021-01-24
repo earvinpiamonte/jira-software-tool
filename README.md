@@ -8,7 +8,49 @@ A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, ti
 - [Tailwind CSS](https://tailwindcss.com/)
 - passion
 
+## Get on Chrome Web Store
+
+[Add to Chrome](https://chrome.google.com/webstore/detail/jira-server-tools/nffiapablabogfkpckmgbeiocccifbed)
+
+## Add to Google Chrome w/ developer mode
+
+1. Clone
+
+```
+git clone https://github.com/earvinpiamonte/jira-server-tools.git
+```
+
+2. cd to project
+
+```
+cd jira-server-tools/
+```
+
+3. Install dependencies
+
+```
+npm i
+```
+
+4. Build project
+
+```
+npm run build
+```
+
+5. Open a Google Chrome browser and navigate to `chrome://extensions/`.
+
+6. Enable `Developer mode`.
+
+7. Click on `Load unpacked`.
+
+8. Find the project `jira-server-tools/` and open it. Select `build/` as the extension directory
+
+9. Jira Server Tools extension should be added to Chrome at this point.
+
 ## Development
+
+Documented below are the additions and updates I made to be able to run this React project on a Google Chrome browser.
 
 ### Updates on `package.json`
 
