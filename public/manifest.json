@@ -14,7 +14,7 @@
   "icons": {
     "16": "images/16.png",
     "32": "images/32.png",
-    "48": "images/48.png",
-    "120": "images/120.png"
+    "192": "images/192.png",
+    "512": "images/512.png"
   }
 }
