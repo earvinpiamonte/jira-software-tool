@@ -2,6 +2,12 @@
 
 A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.
 
+## Built with
+
+- [Create React App](https://create-react-app.dev/) - config override by [CRACO](https://github.com/gsoft-inc/craco)
+- [Tailwind CSS](https://tailwindcss.com/)
+- passion
+
 ## Development
 
 ### Updates on `package.json`
