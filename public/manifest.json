@@ -5,10 +5,16 @@
   "description": "A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.",
   "author": "earvinpiamonte.com",
   "version": "0.1.0",
-  "permissions": ["activeTab", "tabs"],
-  "browser_action": {
+  "permissions": ["activeTab", "tabs", "declarativeContent"],
+  "background": {
+    "scripts": [
+      "chrome/background.js"
+    ],
+    "persistent": false
+  },
+  "page_action": {
     "default_popup": "index.html?page=popup",
-    "default_title": "Open popup"
+    "default_title": "Open Jira Server Tools"
   },
   "options_page": "index.html?page=options",
   "icons": {
