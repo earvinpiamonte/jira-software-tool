@@ -1,21 +1,24 @@
-/* global chrome */
 import React from "react";
 import { Helmet } from "react-helmet";
 
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
 
-const Popup = ({ manifest }) => {
-  const [ticket, setTicket] = React.useState({});
+const Popup = ({ manifest }: any) => {
+  const [ticket, setTicket] = React.useState({
+    title: "",
+    ID: "",
+    URL: "",
+  });
 
   // access current Jira web page DOM
   const contentDOM = () => {
-    const ticket = {};
+    const ticket: any = {};
 
     const jiraBaseURL = document.location.origin;
 
     // Jira selected issue
     const $ticketSummary = document.getElementById("summary-val"); // issue title
-    const $issueElement = document.getElementById("issuekey-val"); // issue ID and URL
+    const $issueElement: any = document.getElementById("issuekey-val"); // issue ID and URL
     const $issueLink = $issueElement?.childNodes[0]; // issue URL; [0] -> <a>
 
     ticket.title = $ticketSummary?.innerText;

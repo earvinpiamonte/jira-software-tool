@@ -6,7 +6,7 @@ import Popup from "./pages/Popup";
 import Options from "./pages/Options";
 import Test from "./pages/Test";
 
-const App = ({ page }) => {
+const App = ({ page }: { page: string }) => {
   const [manifest, setManifest] = React.useState();
 
   const loadManifest = async () => {

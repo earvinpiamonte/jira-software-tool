@@ -1,4 +1,3 @@
-/* global chrome */
 const getManifest = async () => {
   if (typeof chrome.runtime.getManifest === "function") {
     console.log("Loaded manifest from chrome.runtime.");

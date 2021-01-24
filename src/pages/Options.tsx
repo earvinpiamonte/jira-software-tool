@@ -1,7 +1,6 @@
-import React from "react";
 import { Helmet } from "react-helmet";
 
-const Options = ({ manifest }) => {
+const Options = ({ manifest }: any) => {
   return (
     <>
       <Helmet>

@@ -7,6 +7,13 @@ const CopyToClipboardButton = ({
   initialText,
   endCopyText,
   className,
+} : {
+  value : string,
+  initialText: string,
+  endCopyText: string,
+  disabled ?: boolean,
+  icon ?: string,
+  className ?: string
 }) => {
   const [copied, setCopied] = React.useState(false);
 
