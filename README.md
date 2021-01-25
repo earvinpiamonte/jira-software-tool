@@ -14,6 +14,17 @@ A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ tick
 
 ## Add to Google Chrome w/ developer mode
 
+### Important notes
+Even though this project works on the local development server `http://localhost:3000/`, it is still needed to run `npm run build` whenever you made changes on the source code. This is because the extension needs to function on the browser side and not on the local server.
+
+The normal workflow are the following:
+1. Make change(s) on source code.
+2. Run `npm run build`
+3. Reload the extension at `chrome://extensions/`
+4. Repeat (hehe XD)
+
+### Clone the project and try it out
+
 1. Clone
 
 ```
