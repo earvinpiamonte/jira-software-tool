@@ -19,9 +19,9 @@ Even though this project works on the local development server `http://localhost
 
 The normal workflow are the following:
 1. Make change(s) on source code.
-2. Run `npm run build`
-3. Reload the extension at `chrome://extensions/`
-4. Repeat (hehe XD)
+2. Run `npm run build`.
+3. Reload the extension at `chrome://extensions/` (optional).
+4. Repeat (hehe XD).
 
 ### Clone the project and try it out
 
