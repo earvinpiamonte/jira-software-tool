@@ -63,12 +63,16 @@ const Popup = ({ manifest }: any) => {
       </Helmet>
       <div className="app-popup">
         <div className="py-4 px-4 mb-6">
-          <h1 className="text-lg mb-4">{manifest?.name}</h1>
+          <div className="mb-4">
+            <img src={`${process.env.PUBLIC_URL}/images/32.png`} className="bg-white border rounded mr-2 inline-block" alt="Jira Sotware logo" draggable={false} />
+            <h1 className="text-lg inline-block align-middle">{manifest?.name}</h1>
+          </div>
+          <h2 className="mb-2">Selected issue: {ticket.ID || 'none'}</h2>
           <div className="mb-4">
             <CopyToClipboardButton
               value={ticket.ID}
               disabled={!ticket.ID}
-              initialText={`Copy ticket ID`}
+              initialText={`Copy issue ID`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.ID
@@ -81,7 +85,7 @@ const Popup = ({ manifest }: any) => {
             <CopyToClipboardButton
               value={ticket.title}
               disabled={!ticket.title}
-              initialText={`Copy ticket title`}
+              initialText={`Copy issue title`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.title
@@ -94,7 +98,7 @@ const Popup = ({ manifest }: any) => {
             <CopyToClipboardButton
               value={ticket.URL}
               disabled={!ticket.URL}
-              initialText={`Copy ticket link`}
+              initialText={`Copy issue link`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.URL
