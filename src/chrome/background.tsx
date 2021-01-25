@@ -16,3 +16,5 @@ chrome.runtime.onInstalled.addListener((details) => {
     chrome.declarativeContent.onPageChanged.addRules([rule]);
   });
 });
+
+export {};
