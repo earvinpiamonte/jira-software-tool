@@ -15,9 +15,11 @@ A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ tick
 ## Add to Google Chrome w/ developer mode
 
 ### Important notes
+
 Even though this project works on the local development server `http://localhost:3000/`, it is still needed to run `npm run build` whenever you made changes on the source code. This is because the extension needs to function on the browser side and not on the local server.
 
 The normal workflow are the following:
+
 1. Make change(s) on source code.
 2. Run `npm run build`.
 3. Reload the extension at `chrome://extensions/` (optional).
@@ -70,7 +72,7 @@ Documented below are the additions and updates I made to be able to run this Rea
 - Added `npm run build:chrome-scripts` on `"build"` - additional command to build Chrome scripts.
 - Added `"build:chrome-scripts": "npx webpack -c webpack.chrome.config.js"` - custom command to build Chrome scripts.
 
-Final `"scripts"` block on `package.json`:
+Final look of `"scripts"` block on `package.json`:
 
 ```json
 {
@@ -88,8 +90,9 @@ Final `"scripts"` block on `package.json`:
 
 ### Additions:
 
+- `tsconfig.chrome.webpack.json` - a `tsconfig` file for `src/chrome/*.tsx`.
 - `webpack.chrome.config.js` - used to transpile Chrome scripts.
-- `src/chrome/*.js` - Chrome scripts on development; build output at `build/chrome/`.
+- `src/chrome/*.tsx` - Chrome scripts on development; build output at `build/chrome/`.
 
 ## Maintainer
 
