@@ -1,11 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Jira Server Tools",
-  "short_name": "jira-server-tools",
-  "description": "A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.",
+  "name": "Jira Software Tool",
+  "short_name": "jira-software-tool",
+  "description": "A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.",
   "author": "earvinpiamonte.com",
   "version": "0.1.0",
-  "permissions": ["activeTab", "tabs", "declarativeContent"],
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "declarativeContent"
+  ],
   "background": {
     "scripts": [
       "chrome/background.js"
@@ -14,7 +18,7 @@
   },
   "page_action": {
     "default_popup": "index.html?page=popup",
-    "default_title": "Open Jira Server Tools"
+    "default_title": "Open Jira Software Tool"
   },
   "options_page": "index.html?page=options",
   "icons": {

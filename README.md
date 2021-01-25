@@ -1,6 +1,6 @@
-# Jira Server Tools
+# Jira Software Tool
 
-A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, title and URL to clipboard.
+A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
 
 ## Built with
 
@@ -10,20 +10,20 @@ A Google Chrome extension for self-hosted Jira. Easily copy issue/ ticket ID, ti
 
 ## Add to Google Chrome from Web Store
 
-[Add to Chrome](https://chrome.google.com/webstore/detail/jira-server-tools/nffiapablabogfkpckmgbeiocccifbed)
+[Add to Chrome](https://chrome.google.com/webstore/detail/jira-software-tool/nffiapablabogfkpckmgbeiocccifbed)
 
 ## Add to Google Chrome w/ developer mode
 
 1. Clone
 
 ```
-git clone https://github.com/earvinpiamonte/jira-server-tools.git
+git clone https://github.com/earvinpiamonte/jira-software-tool.git
 ```
 
 2. cd to project
 
 ```
-cd jira-server-tools/
+cd jira-software-tool/
 ```
 
 3. Install dependencies
@@ -44,9 +44,9 @@ npm run build
 
 7. Click on `Load unpacked`.
 
-8. Find the project `jira-server-tools/` and open it. Select `build/` as the extension directory.
+8. Find the project `jira-software-tool/` and open it. Select `build/` as the extension directory.
 
-9. Jira Server Tools extension should be added to Chrome at this point.
+9. Jira Software Tool extension should be added to Chrome at this point.
 
 ## Development story
 
