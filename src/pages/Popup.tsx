@@ -20,11 +20,14 @@ const Popup = ({ manifest }: any) => {
     const $ticketSummary = document.getElementById("summary-val"); // issue title
     const $issueElement: any = document.getElementById("issuekey-val"); // issue ID and URL
     const $issueLink = $issueElement?.childNodes[0]; // issue URL; [0] -> <a>
+    const $issueLinkAlt = document.getElementById("key-val"); // issue URL on issue page
+
+    const $issueURL = $issueLink ?? $issueLinkAlt;
 
     ticket.title = $ticketSummary?.innerText;
-    ticket.ID = $issueLink?.innerText;
-    ticket.URL = $issueLink
-      ? `${jiraBaseURL}${$issueLink?.getAttribute("href")}` // if issue link -> concat base url & issue
+    ticket.ID = $issueURL?.innerText;
+    ticket.URL = $issueURL
+      ? `${jiraBaseURL}${$issueURL?.getAttribute("href")}` // concat base url & issue URL
       : undefined;
 
     // console.log(ticket);
@@ -64,10 +67,17 @@ const Popup = ({ manifest }: any) => {
       <div className="app-popup">
         <div className="py-4 px-4 mb-6">
           <div className="mb-4">
-            <img src={`${process.env.PUBLIC_URL}/images/32.png`} className="bg-white border rounded mr-2 inline-block" alt="Jira Sotware logo" draggable={false} />
-            <h1 className="text-lg inline-block align-middle">{manifest?.name}</h1>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/32.png`}
+              className="bg-white border rounded mr-2 inline-block"
+              alt="Jira Sotware logo"
+              draggable={false}
+            />
+            <h1 className="text-lg inline-block align-middle">
+              {manifest?.name}
+            </h1>
           </div>
-          <h2 className="mb-2">Selected issue: {ticket.ID || 'none'}</h2>
+          <h2 className="mb-2">Selected issue: {ticket.ID || "none"}</h2>
           <div className="mb-4">
             <CopyToClipboardButton
               value={ticket.ID}

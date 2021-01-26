@@ -1,10 +1,14 @@
 /* Background script */
 /* https://developer.chrome.com/docs/extensions/mv2/background_pages/ */
 
-const rule = {
+// #issuekey-val or #key-val element must be present for the popup to show
+const rules = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
-      css: ["#issuekey-val"], // #issuekey-val element must be present for the popup to show
+      css: ["#issuekey-val"],
+    }),
+    new chrome.declarativeContent.PageStateMatcher({
+      css: ["#key-val"],
     }),
   ],
   actions: [new chrome.declarativeContent.ShowPageAction()],
@@ -13,7 +17,7 @@ const rule = {
 chrome.runtime.onInstalled.addListener((details) => {
   console.log(details);
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
-    chrome.declarativeContent.onPageChanged.addRules([rule]);
+    chrome.declarativeContent.onPageChanged.addRules([rules]);
   });
 });
 
