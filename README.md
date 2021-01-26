@@ -2,6 +2,10 @@
 
 A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
 
+## Usage
+
+Select an issue/ ticket from Jira Software dashboard and click on the extension icon on the extensions area of your browser to open the popup. The popup also opens on the specific issue page.
+
 ## Built with
 
 - [Create React App](https://create-react-app.dev/) - config override with [CRACO](https://github.com/gsoft-inc/craco)
