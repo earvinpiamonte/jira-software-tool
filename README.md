@@ -95,7 +95,6 @@ Final look of `"scripts"` block on `package.json`:
 ### Additions:
 
 - `webpack.chrome.config.js` - used to transpile Chrome scripts.
-- `tsconfig.chrome.webpack.json` - a `tsconfig` file for `webpack.chrome.config.js`.
 - `src/chrome/*.tsx` - Chrome scripts; build output at `build/chrome/`.
 
 ## Maintainer
