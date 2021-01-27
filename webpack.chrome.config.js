@@ -16,19 +16,4 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "./build/chrome/"),
   },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: [
-          {
-            loader: "ts-loader",
-            options: {
-              configFile: "tsconfig.chrome.webpack.json",
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
