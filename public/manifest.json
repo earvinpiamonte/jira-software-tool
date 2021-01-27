@@ -16,6 +16,14 @@
     ],
     "persistent": false
   },
+  "content_scripts" : [
+    {
+      "matches": ["<all_urls>"],
+      "include_globs": ["*.txt"],
+      "js": ["chrome/content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "page_action": {
     "default_popup": "index.html?page=popup",
     "default_title": "Open Jira Software Tool"
