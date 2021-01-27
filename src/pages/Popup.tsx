@@ -86,7 +86,7 @@ const Popup = ({ manifest }: any) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="align-middle text-sm mr-1">MSCM-12345</span>
+                <span className="align-middle text-sm mr-1">{ticket.ID}</span>
                 <svg
                   className="w-4 h-4 inline-block"
                   fill="none"
