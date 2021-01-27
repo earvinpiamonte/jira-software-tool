@@ -77,12 +77,40 @@ const Popup = ({ manifest }: any) => {
               {manifest?.name}
             </h1>
           </div>
-          <h2 className="mb-2">Selected issue: {ticket.ID || "none"}</h2>
+          <h2 className="mb-2">
+            <span className="align-middle">Selected issue:</span>{" "}
+            {ticket.ID && ticket.URL ? (
+              <a
+                href={ticket.URL}
+                className="text-blue-600 underlined font-semibold"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="align-middle text-sm mr-1">MSCM-12345</span>
+                <svg
+                  className="w-4 h-4 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            ) : (
+              <span className="text-gray-500 align-middle">None</span>
+            )}
+          </h2>
           <div className="mb-4">
             <CopyToClipboardButton
               value={ticket.ID}
               disabled={!ticket.ID}
-              initialText={`Copy issue ID`}
+              initialText={`Copy ID`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.ID
@@ -95,7 +123,7 @@ const Popup = ({ manifest }: any) => {
             <CopyToClipboardButton
               value={ticket.title}
               disabled={!ticket.title}
-              initialText={`Copy issue title`}
+              initialText={`Copy title`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.title
@@ -108,7 +136,7 @@ const Popup = ({ manifest }: any) => {
             <CopyToClipboardButton
               value={ticket.URL}
               disabled={!ticket.URL}
-              initialText={`Copy issue link`}
+              initialText={`Copy link`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
                 ticket.URL
