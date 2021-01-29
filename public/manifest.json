@@ -4,7 +4,7 @@
   "short_name": "jira-software-tool",
   "description": "A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.",
   "author": "earvinpiamonte.com",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "permissions": [
     "activeTab",
     "tabs",
