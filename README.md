@@ -16,7 +16,7 @@ Select a Jira issue/ ticket and click on the extension icon on the extensions ar
 
 ## Add to Google Chrome from Web Store
 
-[Add to Chrome](https://chrome.google.com/webstore/detail/jira-software-tool/nffiapablabogfkpckmgbeiocccifbed)
+Extension not yet available on Chrome Web Store.
 
 ## Add to Google Chrome w/ developer mode
 
