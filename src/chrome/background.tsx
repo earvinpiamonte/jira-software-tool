@@ -5,10 +5,13 @@
 const rules = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
-      css: ["#issuekey-val"],
+      css: ["#issuekey-val"], // issue on board (self-hosted)
     }),
     new chrome.declarativeContent.PageStateMatcher({
-      css: ["#key-val"],
+      css: ["#key-val"], // issue on page (selft-hosted)
+    }),
+    new chrome.declarativeContent.PageStateMatcher({
+      css: ["#jira-issue-header"], // issue header (cloud)
     }),
   ],
   actions: [new chrome.declarativeContent.ShowPageAction()],
