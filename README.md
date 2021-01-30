@@ -1,10 +1,10 @@
 # Jira Software Tool
 
-A Google Chrome extension for self-hosted Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
+A Google Chrome extension for Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
 
 ## Usage
 
-Select an issue/ ticket from Jira Software dashboard and click on the extension icon on the extensions area of your browser to open the popup. The popup also opens on the specific issue page.
+Select a Jira issue/ ticket and click on the extension icon on the extensions area of your browser to open the popup.
 
 ## Built with
 
