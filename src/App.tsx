@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getManifest } from "./utils/ApiRequests";
+import GetManifestWithChrome from "./utils/GetManifestWithChrome";
 
 import Popup from "./pages/Popup";
 import Options from "./pages/Options";
@@ -10,7 +10,7 @@ const App = ({ page }: { page: string }) => {
   const [manifest, setManifest] = React.useState();
 
   const loadManifest = async () => {
-    const manifestData = await getManifest();
+    const manifestData = await GetManifestWithChrome();
     setManifest(manifestData);
   };
 

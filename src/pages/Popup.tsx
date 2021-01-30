@@ -2,62 +2,10 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
+import GetTicketWithChrome from "../utils/GetTicketWithChrome";
 
 const Popup = ({ manifest }: any) => {
-  const [ticket, setTicket] = React.useState({
-    title: "",
-    ID: "",
-    URL: "",
-  });
-
-  // access current Jira web page DOM
-  const contentDOM = () => {
-    const ticket: any = {};
-
-    const jiraBaseURL = document.location.origin;
-
-    // Jira selected issue
-    const $ticketSummary = document.getElementById("summary-val"); // issue title
-    const $issueElement: any = document.getElementById("issuekey-val"); // issue ID and URL
-    const $issueLink = $issueElement?.childNodes[0]; // issue URL; [0] -> <a>
-    const $issueLinkAlt = document.getElementById("key-val"); // issue URL on issue page
-
-    const $issueURL = $issueLink ?? $issueLinkAlt;
-
-    ticket.title = $ticketSummary?.innerText;
-    ticket.ID = $issueURL?.innerText;
-    ticket.URL = $issueURL
-      ? `${jiraBaseURL}${$issueURL?.getAttribute("href")}` // concat base url & issue URL
-      : undefined;
-
-    // console.log(ticket);
-    return ticket;
-  };
-
-  React.useEffect(() => {
-    const getCurrentTab = () => {
-      if (typeof chrome.tabs !== "undefined") {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          // console.log(tabs);
-          chrome.tabs.executeScript(
-            { code: `(${contentDOM})();` },
-            (results) => {
-              const ticket = results[0];
-              const { ID, title, URL } = ticket;
-
-              setTicket({
-                ID,
-                title,
-                URL,
-              });
-            }
-          );
-        });
-      }
-    };
-
-    getCurrentTab();
-  }, []);
+  const { issueTitle, issueID, issueURL } = GetTicketWithChrome();
 
   return (
     <>
@@ -79,14 +27,14 @@ const Popup = ({ manifest }: any) => {
           </div>
           <h2 className="mb-2">
             <span className="align-middle">Selected issue:</span>{" "}
-            {ticket.ID && ticket.URL ? (
+            {issueID && issueURL ? (
               <a
-                href={ticket.URL}
+                href={issueURL}
                 className="text-blue-600 underlined font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="align-middle text-sm mr-1">{ticket.ID}</span>
+                <span className="align-middle text-sm mr-1">{issueID}</span>
                 <svg
                   className="w-4 h-4 inline-block"
                   fill="none"
@@ -108,12 +56,12 @@ const Popup = ({ manifest }: any) => {
           </h2>
           <div className="mb-4">
             <CopyToClipboardButton
-              value={ticket.ID}
-              disabled={!ticket.ID}
+              value={issueID}
+              disabled={!issueID}
               initialText={`Copy ID`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
-                ticket.ID
+                issueID
                   ? "hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   : ""
               }`}
@@ -121,12 +69,12 @@ const Popup = ({ manifest }: any) => {
           </div>
           <div className="mb-4">
             <CopyToClipboardButton
-              value={ticket.title}
-              disabled={!ticket.title}
+              value={issueTitle}
+              disabled={!issueTitle}
               initialText={`Copy title`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
-                ticket.title
+                issueTitle
                   ? "hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   : ""
               }`}
@@ -134,12 +82,12 @@ const Popup = ({ manifest }: any) => {
           </div>
           <div className="mb-4">
             <CopyToClipboardButton
-              value={ticket.URL}
-              disabled={!ticket.URL}
+              value={issueURL}
+              disabled={!issueURL}
               initialText={`Copy link`}
               endCopyText={`Copied!`}
               className={`w-full py-2 px-4 rounded-md bg-gray-300 text-sm w-full block text-center ${
-                ticket.URL
+                issueURL
                   ? "hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   : ""
               }`}
