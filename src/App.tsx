@@ -6,9 +6,8 @@ import Popup from "./pages/Popup";
 import Options from "./pages/Options";
 import Test from "./pages/Test";
 
-const App = (props: any) => {
-  const { page } = props;
-  const [manifest, setManifest] = React.useState({});
+const App = ({ page }: { page: string }) => {
+  const [manifest, setManifest] = React.useState();
 
   const loadManifest = async () => {
     const manifestData = await GetManifestWithChrome();
@@ -22,18 +21,18 @@ const App = (props: any) => {
   // check what page is requested base on `page` props passed from `index.js`
   switch (page) {
     case "popup":
-      return <Popup {...{ manifest, ...props }} />;
+      return <Popup manifest={manifest} />;
     case "options":
-      return <Options {...{ manifest, ...props }} />;
+      return <Options manifest={manifest} />;
     case "test":
       return process.env.NODE_ENV === "development" ? (
         <Test />
       ) : (
-        <Options {...{ manifest, ...props }} />
+        <Options manifest={manifest} />
       );
     // return default page - Options page
     default:
-      return <Options {...{ manifest, ...props }} />;
+      return <Options manifest={manifest} />;
   }
 };
 
