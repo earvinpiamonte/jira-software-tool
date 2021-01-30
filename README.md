@@ -2,6 +2,8 @@
 
 A Google Chrome extension for Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
 
+![alt text](public/images/social-preview.jpg "Jira Software Tool screenshot")
+
 ## Usage
 
 Select a Jira issue/ ticket and click on the extension icon on the extensions area of your browser to open the popup.
