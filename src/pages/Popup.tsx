@@ -1,4 +1,3 @@
-import React from "react";
 import { Helmet } from "react-helmet";
 
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
@@ -13,7 +12,7 @@ const Popup = ({ manifest }: any) => {
         <title>{manifest?.name}</title>
       </Helmet>
       <div className="app-popup">
-        <div className="py-4 px-4 mb-6">
+        <div className="p-4">
           <div className="mb-4">
             <img
               src={`${process.env.PUBLIC_URL}/images/32.png`}
@@ -94,7 +93,7 @@ const Popup = ({ manifest }: any) => {
             />
           </div>
         </div>
-        <div className="absolute left-0 right-0 bottom-0 bg-gray-100 border-top py-2 px-4">
+        <div className="bg-gray-100 border-top py-2 px-4">
           <p className="text-xs text-gray-500">
             <span>Version {manifest?.version}</span>
           </p>
