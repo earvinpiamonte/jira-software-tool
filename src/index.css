@@ -9,8 +9,8 @@
 /* Write your own custom component styles here */
 
 .app-popup {
-  max-height: 300px;
-  width: 250px;
+  @apply max-h-96;
+  @apply w-64;
   @apply bg-white;
   @apply mx-auto;
   @apply overflow-y-auto;
