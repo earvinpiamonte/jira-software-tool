@@ -2,11 +2,11 @@ import React from "react";
 
 import GetManifestWithChrome from "./utils/GetManifestWithChrome";
 
-import Popup from "./pages/Popup";
-import Options from "./pages/Options";
-import Test from "./pages/Test";
-
 const App = ({ page }: { page: string }) => {
+  const Component = React.lazy(
+    () => import(`./pages/${page}`).catch((err) => null) // catch but I hope I don't fall
+  );
+
   const [manifest, setManifest] = React.useState();
 
   const loadManifest = async () => {
@@ -18,22 +18,11 @@ const App = ({ page }: { page: string }) => {
     loadManifest();
   }, []);
 
-  // check what page is requested base on `page` props passed from `index.js`
-  switch (page) {
-    case "popup":
-      return <Popup manifest={manifest} />;
-    case "options":
-      return <Options manifest={manifest} />;
-    case "test":
-      return process.env.NODE_ENV === "development" ? (
-        <Test />
-      ) : (
-        <Options manifest={manifest} />
-      );
-    // return default page - Options page
-    default:
-      return <Options manifest={manifest} />;
-  }
+  return (
+    <React.Suspense fallback={null}>
+      <Component manifest={manifest} />
+    </React.Suspense>
+  );
 };
 
 export default App;

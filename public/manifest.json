@@ -25,10 +25,10 @@
     }
   ],
   "page_action": {
-    "default_popup": "index.html?page=popup",
+    "default_popup": "index.html?page=Popup",
     "default_title": "Open Jira Software Tool"
   },
-  "options_page": "index.html?page=options",
+  "options_page": "index.html?page=Options",
   "icons": {
     "16": "images/16.png",
     "32": "images/32.png",
