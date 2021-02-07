@@ -1,14 +1,9 @@
-import { getManifest } from "./ApiRequests";
-
 // Get manifest data via `chrome`
-const GetManifestWithChrome = async () => {
-  if (typeof chrome.runtime.getManifest === "function") {
-    console.log("Loaded manifest from chrome.runtime.");
-    return chrome.runtime.getManifest();
-  }
-
-  // Fall back to `fetch`
-  return await getManifest();
+const GetManifestWithChrome = () => {
+  return typeof chrome.runtime.getManifest === "function"
+    ? chrome.runtime.getManifest()
+    : // Fallback to get manifest via `fetch` if `chrome.runtime.getManifest` is undefined
+      import("./ApiRequests").then(({ getManifest }) => getManifest());
 };
 
 export default GetManifestWithChrome;
