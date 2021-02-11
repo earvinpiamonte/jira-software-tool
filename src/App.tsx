@@ -7,16 +7,7 @@ const App = ({ page }: { page: string }) => {
     () => import(`./pages/${page}`).catch((err) => null) // catch but I hope I don't fall
   );
 
-  const [manifest, setManifest] = React.useState();
-
-  const loadManifest = async () => {
-    const manifestData = await GetManifestWithChrome();
-    setManifest(manifestData);
-  };
-
-  React.useEffect(() => {
-    loadManifest();
-  }, []);
+  const manifest = GetManifestWithChrome();
 
   return (
     <React.Suspense fallback={null}>
