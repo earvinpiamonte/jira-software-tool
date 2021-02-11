@@ -24,4 +24,5 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 });
 
+/* Do not export anything */
 export {};
