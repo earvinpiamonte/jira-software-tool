@@ -6,15 +6,16 @@ const useToggleDarkMode = () => {
 
   React.useEffect(() => {
     if (theme) {
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      const $rootElement = document.documentElement;
+
       if (
         theme === "dark" ||
         (!("theme" in localStorage) &&
           window.matchMedia("(prefers-color-scheme: dark)").matches)
       ) {
-        document.documentElement.classList.add("dark");
+        $rootElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove("dark");
+        $rootElement.classList.remove("dark");
       }
 
       localStorage.theme = theme;
