@@ -7,13 +7,13 @@ const CopyToClipboardButton = ({
   initialText,
   endCopyText,
   className,
-} : {
-  value : string,
-  initialText: string,
-  endCopyText: string,
-  disabled ?: boolean,
-  icon ?: string,
-  className ?: string
+}: {
+  value: string;
+  initialText: string;
+  endCopyText: string;
+  disabled?: boolean;
+  icon?: string;
+  className?: string;
 }) => {
   const [copied, setCopied] = React.useState(false);
 
@@ -27,7 +27,11 @@ const CopyToClipboardButton = ({
   return (
     <button
       type="button"
-      className={`${className} ${disabled ? "disabled:opacity-50" : ""}`}
+      className={`py-2 px-4 text-sm text-center rounded-md bg-gray-300 dark:bg-gray-700 dark:text-gray-300 ${
+        !disabled
+          ? "hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:hover:bg-gray-600 dark:hover:text-white"
+          : ""
+      } ${className} ${disabled ? "disabled:opacity-50" : ""}`}
       onClick={() => {
         navigator.clipboard.writeText(value);
         setCopied(true);
