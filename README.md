@@ -2,7 +2,9 @@
 
 A Google Chrome extension for Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.
 
-![alt text](public/images/social-preview.jpg "Jira Software Tool screenshot")
+![alt text](public/images/social-preview.png "Jira Software Tool screenshot")
+
+![alt text](public/images/social-preview-2.png "Jira Software Tool dark screenshot")
 
 ## Usage
 
