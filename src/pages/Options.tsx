@@ -1,9 +1,6 @@
 import { Helmet } from "react-helmet";
 
-import useTheme from "../hooks/useTheme";
-
 const Options = ({ manifest }: any) => {
-  useTheme();
 
   return (
     <>
