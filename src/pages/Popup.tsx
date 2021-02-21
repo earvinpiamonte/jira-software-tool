@@ -1,12 +1,12 @@
 import { Helmet } from "react-helmet";
 
-import useToggleDarkMode from "../hooks/useToggleDarkMode";
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
-import GetTicketWithChrome from "../utils/GetTicketWithChrome";
+import useTicketWithChrome from "../hooks/useTicketWithChrome";
+import useTheme from "../hooks/useTheme";
 
 const Popup = ({ manifest }: any) => {
-  const { issueTitle, issueID, issueURL } = GetTicketWithChrome();
-  const [newTheme, setTheme] = useToggleDarkMode();
+  const { issueTitle, issueID, issueURL } = useTicketWithChrome();
+  const [newTheme, setTheme] = useTheme();
 
   return (
     <>

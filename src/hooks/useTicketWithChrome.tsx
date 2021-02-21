@@ -1,9 +1,9 @@
 import React from "react";
 
-import { getTicketFromDOM } from "./DOM";
+import { getTicketFromDOM } from "../utils/DOM";
 
 // Get current Chrome tab and return ticket details from DOM
-const GetTicketWithChrome = () => {
+const useTicketWithChrome = () => {
   const [ticket, setTicket] = React.useState({
     issueTitle: "",
     issueID: "",
@@ -39,4 +39,4 @@ const GetTicketWithChrome = () => {
   return ticket;
 };
 
-export default GetTicketWithChrome;
+export default useTicketWithChrome;

@@ -1,7 +1,7 @@
 import React from "react";
 
 // Get manifest data via `chrome`
-const GetManifestWithChrome = () => {
+const useChromeManifest = () => {
   const [manifest, setManifest] = React.useState();
 
   const loadManifest = async () => {
@@ -9,7 +9,7 @@ const GetManifestWithChrome = () => {
       typeof chrome.runtime.getManifest === "function"
         ? chrome.runtime.getManifest()
         : // Fallback to get manifest via `fetch` if `chrome.runtime.getManifest` is undefined
-          await import("./ApiRequests").then(({ getManifest }) =>
+          await import("../utils/ApiRequests").then(({ getManifest }) =>
             getManifest()
           );
     setManifest(manifestData);
@@ -22,4 +22,4 @@ const GetManifestWithChrome = () => {
   return manifest;
 };
 
-export default GetManifestWithChrome;
+export default useChromeManifest;
