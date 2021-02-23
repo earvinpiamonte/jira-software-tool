@@ -6,7 +6,7 @@ import useTheme from "../hooks/useTheme";
 
 const Popup = ({ manifest }: any) => {
   const { issueTitle, issueID, issueURL } = useTicketWithChrome();
-  const [newTheme, setTheme] = useTheme();
+  const [nextTheme, setTheme] = useTheme();
 
   return (
     <>
@@ -93,10 +93,10 @@ const Popup = ({ manifest }: any) => {
             <div className="flex flex-1 items-center justify-end">
               <button
                 className="py-1 px-2 text-sm text-center rounded-md bg-gray-300 dark:bg-gray-700 dark:text-gray-300 text-sm hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:hover:bg-gray-600 dark:hover:text-white"
-                onClick={() => setTheme(newTheme)}
+                onClick={() => setTheme(nextTheme)}
                 aria-label="Toggle dark mode"
               >
-                {newTheme !== "dark" ? (
+                {nextTheme !== "dark" ? (
                   <svg
                     className="w-4 h-4"
                     fill="none"
