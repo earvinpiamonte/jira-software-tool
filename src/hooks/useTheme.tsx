@@ -4,13 +4,15 @@ const useTheme = () => {
   const [theme, setTheme] = React.useState(localStorage.theme);
   const nextTheme = theme === "dark" ? "light" : "dark";
 
-  const rootElementClassList = document.documentElement.classList;
+  React.useEffect(() => {
+    const rootElementClassList = document.documentElement.classList;
 
-  theme === "dark"
-    ? rootElementClassList.add("dark")
-    : rootElementClassList.remove("dark");
+    theme === "dark"
+      ? rootElementClassList.add("dark")
+      : rootElementClassList.remove("dark");
 
-  localStorage.theme = theme;
+    localStorage.theme = theme;
+  }, [theme]);
 
   return [nextTheme, setTheme] as const;
 };
