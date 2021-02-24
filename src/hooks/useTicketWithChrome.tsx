@@ -11,29 +11,25 @@ const useTicketWithChrome = () => {
   });
 
   React.useEffect(() => {
-    const getCurrentTab = () => {
-      if (typeof chrome.tabs !== "undefined") {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          // console.log(tabs);
-          // Get ticket details result from DOM
-          chrome.tabs.executeScript(
-            { code: `(${getTicketFromDOM})();` },
-            (results) => {
-              const ticket = results[0];
-              const { issueTitle, issueID, issueURL } = ticket;
+    if (typeof chrome.tabs !== "undefined") {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        // console.log(tabs);
+        // Get ticket details result from DOM
+        chrome.tabs.executeScript(
+          { code: `(${getTicketFromDOM})();` },
+          (results) => {
+            const ticket = results[0];
+            const { issueTitle, issueID, issueURL } = ticket;
 
-              setTicket({
-                issueTitle,
-                issueID,
-                issueURL,
-              });
-            }
-          );
-        });
-      }
-    };
-
-    getCurrentTab();
+            setTicket({
+              issueTitle,
+              issueID,
+              issueURL,
+            });
+          }
+        );
+      });
+    }
   }, []);
 
   return ticket;
