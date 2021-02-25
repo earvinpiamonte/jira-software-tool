@@ -11,11 +11,11 @@ const App = ({ page }: { page: string }) => {
   );
 
   return (
-    <React.Suspense fallback={null}>
-      <ThemeProvider>
+    <ThemeProvider>
+      <React.Suspense fallback={null}>
         <Page manifest={manifest} />
-      </ThemeProvider>
-    </React.Suspense>
+      </React.Suspense>
+    </ThemeProvider>
   );
 };
 
