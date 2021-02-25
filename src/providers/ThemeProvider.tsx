@@ -8,7 +8,7 @@ type ThemeContextTypes = {
 export const ThemeContext = React.createContext({} as ThemeContextTypes);
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState(localStorage.theme);
+  const [theme, setTheme] = React.useState(localStorage.theme ?? "light");
   const nextTheme = theme === "dark" ? "light" : "dark";
 
   React.useEffect(() => {
