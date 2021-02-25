@@ -7,8 +7,8 @@ import useTicketWithChrome from "../hooks/useTicketWithChrome";
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
 
 const Popup = ({ manifest }: any) => {
-  const { issueTitle, issueID, issueURL } = useTicketWithChrome();
   const { nextTheme, setTheme } = React.useContext(ThemeContext);
+  const { issueTitle, issueID, issueURL } = useTicketWithChrome();
 
   return (
     <>
