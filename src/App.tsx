@@ -1,11 +1,9 @@
 import React from "react";
 
-import useTheme from "./hooks/useTheme";
+import ThemeProvider from "./providers/ThemeProvider";
 import useChromeManifest from "./hooks/useChromeManifest";
 
 const App = ({ page }: { page: string }) => {
-  useTheme();
-
   const manifest = useChromeManifest();
 
   const Page = React.lazy(
@@ -14,7 +12,9 @@ const App = ({ page }: { page: string }) => {
 
   return (
     <React.Suspense fallback={null}>
-      <Page manifest={manifest} />
+      <ThemeProvider>
+        <Page manifest={manifest} />
+      </ThemeProvider>
     </React.Suspense>
   );
 };

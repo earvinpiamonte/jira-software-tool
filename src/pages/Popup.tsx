@@ -1,12 +1,14 @@
+import React from "react";
+
 import { Helmet } from "react-helmet";
 
-import CopyToClipboardButton from "../components/CopyToClipboardButton";
+import { ThemeContext } from "../providers/ThemeProvider";
 import useTicketWithChrome from "../hooks/useTicketWithChrome";
-import useTheme from "../hooks/useTheme";
+import CopyToClipboardButton from "../components/CopyToClipboardButton";
 
 const Popup = ({ manifest }: any) => {
   const { issueTitle, issueID, issueURL } = useTicketWithChrome();
-  const [nextTheme, setTheme] = useTheme();
+  const { nextTheme, setTheme } = React.useContext(ThemeContext);
 
   return (
     <>
