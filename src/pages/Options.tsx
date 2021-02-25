@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet";
 
 const Options = ({ manifest }: any) => {
-
   return (
     <>
       <Helmet>
