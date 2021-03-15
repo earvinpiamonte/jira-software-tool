@@ -16,9 +16,9 @@ Select a Jira issue/ ticket and click on the extension icon on the extensions ar
 - [Tailwind CSS](https://tailwindcss.com/)
 - passion
 
-## Add to Google Chrome from Web Store
+## Add to Google Chrome
 
-Extension not yet available on Chrome Web Store.
+Get the extension at [Chrome Web Store](https://chrome.google.com/webstore/detail/jira-software-tool/aaecjgljobmnembdinkpfmacnngjdgch).
 
 ## Add to Google Chrome w/ developer mode
 
