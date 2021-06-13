@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "./build/chrome/"),
+    path: path.resolve(__dirname, "./build/"),
   },
   module: {
     rules: [
