@@ -6,7 +6,7 @@ const useChromeManifest = () => {
 
   const loadManifest = async () => {
     const manifestData =
-      typeof chrome.runtime.getManifest === "function"
+      typeof chrome.runtime?.getManifest === "function"
         ? chrome.runtime.getManifest()
         : // Fallback to get manifest via `fetch` if `chrome.runtime.getManifest` is undefined
           await import("../utils/ApiRequests").then(({ getManifest }) =>

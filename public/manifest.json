@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Jira Software Tool",
   "short_name": "jira-software-tool",
   "description": "A Google Chrome extension for Jira Software. Easily copy issue/ ticket ID, title and URL to clipboard.",
@@ -8,15 +8,10 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "declarativeContent"
+    "declarativeContent",
+    "scripting"
   ],
-  "background": {
-    "scripts": [
-      "chrome/background.js"
-    ],
-    "persistent": false
-  },
-  "page_action": {
+  "action": {
     "default_popup": "index.html?page=Popup",
     "default_title": "Open Jira Software Tool"
   },
