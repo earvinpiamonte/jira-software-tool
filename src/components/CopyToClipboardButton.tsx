@@ -41,7 +41,7 @@ const CopyToClipboardButton = ({
       {!icon ? (
         copied ? (
           <svg
-            className="w-4 h-4 inline-block mr-1"
+            className="w-4 h-4 inline-block mr-1 text-green-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

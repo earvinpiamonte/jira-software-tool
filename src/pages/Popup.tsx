@@ -62,7 +62,7 @@ const Popup = ({ manifest }: any) => {
               value={issueID}
               disabled={!issueID}
               initialText={`Copy ID`}
-              endCopyText={`Copied!`}
+              endCopyText={`Copied`}
               className={`block w-full`}
             />
           </div>
@@ -71,7 +71,7 @@ const Popup = ({ manifest }: any) => {
               value={issueTitle}
               disabled={!issueTitle}
               initialText={`Copy title`}
-              endCopyText={`Copied!`}
+              endCopyText={`Copied`}
               className={`block w-full`}
             />
           </div>
@@ -80,7 +80,7 @@ const Popup = ({ manifest }: any) => {
               value={issueURL}
               disabled={!issueURL}
               initialText={`Copy link`}
-              endCopyText={`Copied!`}
+              endCopyText={`Copied`}
               className={`block w-full`}
             />
           </div>
