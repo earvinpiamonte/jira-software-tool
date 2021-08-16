@@ -1,0 +1,3 @@
+const CLIPBOARD_ITEMS_STORAGE_KEY = 'clipboardItems';
+
+export { CLIPBOARD_ITEMS_STORAGE_KEY };

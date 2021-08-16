@@ -1,21 +1,254 @@
-import { Helmet } from "react-helmet";
+import React from 'react';
+
+import { Helmet } from 'react-helmet';
+
+import { CLIPBOARD_ITEMS_STORAGE_KEY } from '../utils/Constants';
+import { chromeStorageGet, chromeStorageSet } from '../utils/ChromeStorage';
+
+import { ThemeContext } from '../providers/ThemeProvider';
+
+import FormGroup from '../components/FormGroup';
+import Button from '../components/Button';
+import TextArea from '../components/TextArea';
+import Alert from '../components/Alert';
+
+const alertTimeoutMs = 3000;
+let alertTimeoutID = setTimeout(() => {}, 0);
 
 const Options = ({ manifest }: any) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
+  const [inputLabel, setInputLabel] = React.useState('');
+  const [inputValue, setInputValue] = React.useState('');
+  const [inputTheme, setInputTheme] = React.useState(theme);
+
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const [alert, setAlert] = React.useState({
+    show: false,
+    type: 'error',
+    message: 'Something went wrong. Please try again.',
+  });
+
+  const hideAlert = () => {
+    const { show, ...rest } = alert;
+    setAlert({ show: false, ...rest });
+  };
+
+  const retrieveClipboardItems = async () => {
+    const clipboardItems: any = await chromeStorageGet(
+      CLIPBOARD_ITEMS_STORAGE_KEY,
+      [
+        {
+          label: 'ID - Title',
+          value: '[id] - [title]',
+        },
+      ]
+    );
+
+    const [firstItem] = clipboardItems;
+    const { label, value } = firstItem;
+
+    setInputLabel(label);
+    setInputValue(value);
+  };
+
+  const handleInputChange =
+    (setValue: CallableFunction) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      clearTimeout(alertTimeoutID);
+
+      setValue(e.target.value);
+      setAlert({
+        show: true,
+        type: 'muted',
+        message: 'Changes made are not yet applied.',
+      });
+    };
+
+  const saveClipboardItem = async () => {
+    setInputLabel(inputLabel.trim());
+    setInputValue(inputValue);
+
+    return await chromeStorageSet(CLIPBOARD_ITEMS_STORAGE_KEY, [
+      {
+        label: inputLabel,
+        value: inputValue,
+      },
+    ]);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    clearTimeout(alertTimeoutID);
+
+    const saved = await saveClipboardItem();
+
+    setTheme(inputTheme);
+
+    setSubmitting(false);
+
+    if (saved) {
+      setAlert({
+        show: true,
+        type: 'success',
+        message: 'Settings successfully saved.',
+      });
+
+      alertTimeoutID = setTimeout(hideAlert, alertTimeoutMs);
+
+      return;
+    }
+
+    setAlert({
+      show: true,
+      type: 'warning',
+      message: 'Something went wrong. Please try again.',
+    });
+  };
+
+  React.useEffect(() => {
+    retrieveClipboardItems();
+  }, []);
+
   return (
     <>
       <Helmet>
         <title>{`${manifest?.name} | Options`}</title>
       </Helmet>
-      <section className="py-6 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
+      <section className="py-6 dark:bg-gray-900 dark:text-gray-300 min-h-screen text-base">
         <div className="md:container md:mx-auto px-4">
-          <div className="mb-4">
-            <h1 className="text-3xl mb-4 dark:text-white">{manifest?.name}</h1>
-            <h2 className="text-lg mb-2 dark:text-white">About</h2>
-            <p className="mb-2">{manifest?.description}</p>
+          <div className="mb-4 border rounded-md px-4 pt-8 pb-10 bg-white dark:bg-gray-800 dark:border-gray-700">
+            <div className="mb-8">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/32.png`}
+                className="bg-white border rounded mr-4 inline-block"
+                alt="Jira Sotware logo"
+                draggable={false}
+              />
+              <h1 className="text-4xl inline-block align-middle dark:text-white">
+                {manifest?.name}
+              </h1>
+            </div>
+            <h2 className="text-2xl text-gray-900 mb-4 dark:text-white">
+              Settings
+            </h2>
+            <form className="mb-16" onSubmit={handleFormSubmit}>
+              <FormGroup>
+                <div className="mb-1">
+                  <label htmlFor={inputTheme}>Theme</label>
+                </div>
+                <div className="mb-1">
+                  <label htmlFor="light">
+                    <input
+                      type="radio"
+                      name="theme"
+                      id="light"
+                      onChange={handleInputChange(setInputTheme)}
+                      value="light"
+                      checked={inputTheme === 'light'}
+                      disabled={submitting}
+                    />
+                    <span className="ml-2 align-middle">Light</span>
+                  </label>
+                </div>
+                <div className="mb-1">
+                  <label htmlFor="dark">
+                    <input
+                      type="radio"
+                      name="theme"
+                      id="dark"
+                      onChange={handleInputChange(setInputTheme)}
+                      value="dark"
+                      checked={inputTheme === 'dark'}
+                      disabled={submitting}
+                    />
+                    <span className="ml-2 align-middle">Dark</span>
+                  </label>
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <label className="block mb-1" htmlFor="copyToClipboardItem">
+                  Button label
+                </label>
+                <label className="block mb-1" htmlFor="copyToClipboardItem">
+                  <small>
+                    Set a custom copy to clipboard button on the dropdown menu.
+                  </small>
+                </label>
+                <input
+                  type="text"
+                  id="copyToClipboardItem"
+                  name="copyToClipboardItem"
+                  className="w-full border-gray-300 rounded shadow-sm dark:text-gray-900 disabled:bg-gray-100 focus:ring-transparent"
+                  value={inputLabel}
+                  onChange={handleInputChange(setInputLabel)}
+                  disabled={submitting}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label
+                  htmlFor="copyToClipboardItemFormat"
+                  className="block mb-1"
+                >
+                  Custom value
+                </label>
+                <label
+                  htmlFor="copyToClipboardItemFormat"
+                  className="block mb-1"
+                >
+                  <small>
+                    Available variables that can be used for custom value:{' '}
+                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                      [id]
+                    </span>
+                    ,{' '}
+                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                      [title]
+                    </span>
+                    ,{' '}
+                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                      [url]
+                    </span>
+                    .
+                  </small>
+                </label>
+                <TextArea
+                  name="copyToClipboardItemFormat"
+                  id="copyToClipboardItemFormat"
+                  className="w-full border-gray-300 rounded shadow-sm dark:text-gray-900 disabled:bg-gray-100 focus:ring-transparent"
+                  value={inputValue}
+                  rows={1}
+                  maxLength={200}
+                  onChange={handleInputChange(setInputValue)}
+                  disabled={submitting}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Button className="mr-4" disabled={submitting}>
+                  {submitting ? 'Saving...' : 'Save'}
+                </Button>
+                {alert.show && (
+                  <Alert
+                    display="inline"
+                    type={alert.type}
+                    message={alert.message}
+                  />
+                )}
+              </FormGroup>
+            </form>
+            <hr className="my-16 border" />
+            <h2 className="text-2xl text-gray-900 mb-4 dark:text-white">
+              About
+            </h2>
             <p className="mb-2">
-              This project is written, designed and built by{" "}
+              {manifest?.name} &mdash; {manifest?.description}
+            </p>
+            <p className="mb-8">
+              This project is written, designed and built by{' '}
               <a
-                href={`https://twitter.com/earvinpiamonte`}
+                href={`https://www.earvinpiamonte.com/`}
                 className="underline text-blue-600 font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -24,11 +257,11 @@ const Options = ({ manifest }: any) => {
               </a>
               .
             </p>
-          </div>
-          <div className="mb-4">
-            <h2 className="text-lg mb-2 dark:text-white">Credits</h2>
+            <h2 className="text-2xl text-gray-900 mb-4 dark:text-white">
+              Disclaimer
+            </h2>
             <p>
-              Jira Software images are owned by{" "}
+              Jira Software images are owned by{' '}
               <a
                 href={`https://www.atlassian.com/`}
                 className="underline text-blue-600 font-semibold"
@@ -36,8 +269,8 @@ const Options = ({ manifest }: any) => {
                 rel="noopener noreferrer"
               >
                 Atlassian
-              </a>{" "}
-              and generated using{" "}
+              </a>{' '}
+              and generated using{' '}
               <a
                 href={`https://realfavicongenerator.net/`}
                 className="underline text-blue-600 font-semibold"
@@ -46,7 +279,8 @@ const Options = ({ manifest }: any) => {
               >
                 RealFaviconGenerator.net
               </a>
-              .
+              . This project nor I is affiliated with Jira or Atlassian in any
+              way.
             </p>
           </div>
         </div>

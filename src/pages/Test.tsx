@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 const Test = () => {
   return (
@@ -6,7 +6,7 @@ const Test = () => {
       <Helmet>
         <title>Test page for popup</title>
       </Helmet>
-      <section className="py-6">
+      <section className="py-6 text-base">
         <div className="md:container md:mx-auto px-4">
           <h1 className="text-2xl mb-4" id="summary-val">
             Lorem ipsum dolor sit amet consectetur adipisicing elit
