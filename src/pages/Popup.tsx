@@ -5,8 +5,11 @@ import { CogIcon, ExternalLinkIcon } from '@heroicons/react/solid';
 
 import useTicketWithChrome from '../hooks/useTicketWithChrome';
 
-import { CLIPBOARD_ITEMS_STORAGE_KEY } from '../utils/Constants';
-import { chromeStorageGet, chromeStorageSet } from '../utils/ChromeStorage';
+import {
+  CLIPBOARD_ITEMS_STORAGE_KEY,
+  DEFAULT_CLIPBOARD_ITEM,
+} from '../utils/Constants';
+import { chromeStorageGet } from '../utils/ChromeStorage';
 
 import CopyToClipboardButton from '../components/CopyToClipboardButton';
 
@@ -20,12 +23,7 @@ const Popup = ({ manifest }: any) => {
   const retrieveClipboardItems = async () => {
     const clipboardItems: any = await chromeStorageGet(
       CLIPBOARD_ITEMS_STORAGE_KEY,
-      [
-        {
-          label: 'ID - Title',
-          value: '[id] - [title]',
-        },
-      ]
+      [DEFAULT_CLIPBOARD_ITEM]
     );
 
     const [firstItem] = clipboardItems;
