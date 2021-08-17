@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Helmet } from 'react-helmet';
+import { InformationCircleIcon, XIcon } from '@heroicons/react/solid';
 
 import {
   CLIPBOARD_ITEMS_STORAGE_KEY,
@@ -15,6 +16,7 @@ import FormGroup from '../components/FormGroup';
 import Button from '../components/Button';
 import TextArea from '../components/TextArea';
 import Alert from '../components/Alert';
+import Modal from '../components/Modal';
 
 const alertTimeoutMs = 3000;
 let alertTimeoutID = setTimeout(() => {}, 0);
@@ -36,6 +38,15 @@ const Options = ({ manifest }: any) => {
     type: 'error',
     message: 'Something went wrong. Please try again.',
   });
+
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState<React.ReactNode>();
+
+  const openModal = (content?: React.ReactNode) => {
+    setModalContent(content);
+    setModalIsOpen(true);
+  };
+  const closeModal = () => setModalIsOpen(false);
 
   const hideAlert = () => {
     const { show, ...rest } = alert;
@@ -118,11 +129,35 @@ const Options = ({ manifest }: any) => {
     setInputValueRemaining(CLIPBOARD_ITEM_VALUE_MAX_LENGTH - inputValue.length);
   }, [inputValue]);
 
+  React.useEffect(() => {
+    document.body.style.overflowY = modalIsOpen ? 'hidden' : 'auto';
+
+    if (!modalIsOpen) {
+      setModalContent(null);
+    }
+  }, [modalIsOpen]);
+
   return (
     <>
       <Helmet>
         <title>{`${manifest?.name} | Options`}</title>
       </Helmet>
+      <Modal show={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+        <div className="flex items-center mb-4">
+          <div className="flex-grow">
+            <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
+            <span className="align-middle font-medium">
+              Custom copy to clipboard button
+            </span>
+          </div>
+          <div className="flex-none">
+            <button type="button" onClick={closeModal} aria-label="Close">
+              <XIcon className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+        <div className="mb-4">{modalContent}</div>
+      </Modal>
       <section className="py-6 dark:bg-gray-900 dark:text-gray-300 min-h-screen text-base">
         <div className="md:container md:mx-auto px-4">
           <div className="mb-4 border rounded-md px-4 pt-8 pb-10 bg-white dark:bg-gray-800 dark:border-gray-700">
@@ -175,16 +210,31 @@ const Options = ({ manifest }: any) => {
                 </div>
               </FormGroup>
               <FormGroup>
-                <label className="block mb-1" htmlFor="copyToClipboardItem">
-                  Button label
-                </label>
-                <label className="block mb-1" htmlFor="copyToClipboardItem">
-                  <small>
-                    Set a custom copy to clipboard button on the dropdown menu.
-                    This button can be hidden on the dropdown by setting the
-                    label empty.
-                  </small>
-                </label>
+                <div className="flex mb-1">
+                  <div className="flex-grow">
+                    <label className="block" htmlFor="copyToClipboardItem">
+                      Button label
+                    </label>
+                  </div>
+                  <div className="flex-none">
+                    <button
+                      type="button"
+                      className="px-1"
+                      onClick={() => {
+                        openModal(
+                          <p>
+                            Set a custom copy to clipboard button on the
+                            dropdown menu. This button can be hidden on the
+                            dropdown by setting the label empty.
+                          </p>
+                        );
+                      }}
+                      aria-label="Open Button Label modal"
+                    >
+                      <InformationCircleIcon className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
                 <input
                   type="text"
                   id="copyToClipboardItem"
@@ -196,32 +246,51 @@ const Options = ({ manifest }: any) => {
                 />
               </FormGroup>
               <FormGroup>
-                <label
-                  htmlFor="copyToClipboardItemFormat"
-                  className="block mb-1"
-                >
-                  Custom value
-                </label>
-                <label
-                  htmlFor="copyToClipboardItemFormat"
-                  className="block mb-1"
-                >
-                  <small>
-                    Available variables that can be used for custom value:{' '}
-                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
-                      [id]
-                    </span>
-                    ,{' '}
-                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
-                      [title]
-                    </span>
-                    ,{' '}
-                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
-                      [url]
-                    </span>
-                    .
-                  </small>
-                </label>
+                <div className="flex mb-1">
+                  <div className="flex-grow">
+                    <label
+                      className="block"
+                      htmlFor="copyToClipboardItemFormat"
+                    >
+                      Custom value
+                    </label>
+                  </div>
+                  <div className="flex-none">
+                    <button
+                      type="button"
+                      className="px-1"
+                      onClick={() => {
+                        openModal(
+                          <>
+                            <p className="mb-2">
+                              Available variables that can be used for custom
+                              value:{' '}
+                              <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                                [id]
+                              </span>
+                              ,{' '}
+                              <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                                [title]
+                              </span>
+                              ,{' '}
+                              <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                                [url]
+                              </span>
+                              .
+                            </p>
+                            <p>
+                              The custom value can have new lines and up to 100
+                              characters.
+                            </p>
+                          </>
+                        );
+                      }}
+                      aria-label="Open Custom value modal"
+                    >
+                      <InformationCircleIcon className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
                 <TextArea
                   name="copyToClipboardItemFormat"
                   id="copyToClipboardItemFormat"
@@ -241,7 +310,7 @@ const Options = ({ manifest }: any) => {
                 </p>
               </FormGroup>
               <FormGroup>
-                <Button className="mr-4" disabled={submitting}>
+                <Button type="submit" className="mr-4" disabled={submitting}>
                   {submitting ? 'Saving...' : 'Save'}
                 </Button>
                 {alert.show && (
