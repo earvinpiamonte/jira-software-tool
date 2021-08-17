@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Helmet } from 'react-helmet';
 
-import { CLIPBOARD_ITEMS_STORAGE_KEY } from '../utils/Constants';
+import {
+  CLIPBOARD_ITEMS_STORAGE_KEY,
+  CLIPBOARD_ITEM_VALUE_MAX_LENGTH,
+  DEFAULT_CLIPBOARD_ITEM,
+} from '../utils/Constants';
 import { chromeStorageGet, chromeStorageSet } from '../utils/ChromeStorage';
 
 import { ThemeContext } from '../providers/ThemeProvider';
@@ -23,6 +27,9 @@ const Options = ({ manifest }: any) => {
   const [inputTheme, setInputTheme] = React.useState(theme);
 
   const [submitting, setSubmitting] = React.useState(false);
+  const [inputValueRemaining, setInputValueRemaining] = React.useState(
+    CLIPBOARD_ITEM_VALUE_MAX_LENGTH
+  );
 
   const [alert, setAlert] = React.useState({
     show: false,
@@ -38,12 +45,7 @@ const Options = ({ manifest }: any) => {
   const retrieveClipboardItems = async () => {
     const clipboardItems: any = await chromeStorageGet(
       CLIPBOARD_ITEMS_STORAGE_KEY,
-      [
-        {
-          label: 'ID - Title',
-          value: '[id] - [title]',
-        },
-      ]
+      [DEFAULT_CLIPBOARD_ITEM]
     );
 
     const [firstItem] = clipboardItems;
@@ -112,6 +114,10 @@ const Options = ({ manifest }: any) => {
     retrieveClipboardItems();
   }, []);
 
+  React.useEffect(() => {
+    setInputValueRemaining(CLIPBOARD_ITEM_VALUE_MAX_LENGTH - inputValue.length);
+  }, [inputValue]);
+
   return (
     <>
       <Helmet>
@@ -175,6 +181,8 @@ const Options = ({ manifest }: any) => {
                 <label className="block mb-1" htmlFor="copyToClipboardItem">
                   <small>
                     Set a custom copy to clipboard button on the dropdown menu.
+                    This button can be hidden on the dropdown by setting the
+                    label empty.
                   </small>
                 </label>
                 <input
@@ -200,15 +208,15 @@ const Options = ({ manifest }: any) => {
                 >
                   <small>
                     Available variables that can be used for custom value:{' '}
-                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
                       [id]
                     </span>
                     ,{' '}
-                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
                       [title]
                     </span>
                     ,{' '}
-                    <span className="px-2 bg-gray-300 dark:bg-gray-900 mr-1 inline-block rounded-md">
+                    <span className="px-2 bg-gray-200 dark:bg-gray-900 mr-1 inline-block rounded-md">
                       [url]
                     </span>
                     .
@@ -217,13 +225,20 @@ const Options = ({ manifest }: any) => {
                 <TextArea
                   name="copyToClipboardItemFormat"
                   id="copyToClipboardItemFormat"
-                  className="w-full border-gray-300 rounded shadow-sm dark:text-gray-900 disabled:bg-gray-100 focus:ring-transparent"
+                  className="w-full border-gray-300 rounded shadow-sm dark:text-gray-900 disabled:bg-gray-100 focus:ring-transparent block mb-1"
                   value={inputValue}
                   rows={1}
-                  maxLength={200}
+                  maxLength={CLIPBOARD_ITEM_VALUE_MAX_LENGTH}
                   onChange={handleInputChange(setInputValue)}
                   disabled={submitting}
                 />
+                <p className="mb-0 text-gray-400">
+                  <small>
+                    {`${inputValueRemaining} character${
+                      inputValueRemaining > 1 ? 's' : ''
+                    } left`}
+                  </small>
+                </p>
               </FormGroup>
               <FormGroup>
                 <Button className="mr-4" disabled={submitting}>
