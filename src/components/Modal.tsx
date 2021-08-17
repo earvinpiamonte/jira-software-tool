@@ -19,7 +19,7 @@ const Modal = ({
           className="bg-black bg-opacity-80 fixed inset-0 h-screen w-screen z-10 py-32 px-4 overflow-y-auto text-base"
           onClick={onClickHandler}
         >
-          <div className="mx-auto max-w-lg px-4 py-4 bg-white rounded-lg dark:bg-gray-900 dark:text-gray-400">
+          <div className="mx-auto max-w-lg px-4 py-4 bg-white rounded-lg dark:bg-gray-800 dark:text-gray-400">
             {children}
           </div>
         </div>
