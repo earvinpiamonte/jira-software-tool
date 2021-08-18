@@ -1,20 +1,20 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: "class", // or 'media' or 'class'
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     container: {
       // https://github.com/tailwindlabs/tailwindcss/issues/1102#issuecomment-751418459
       screens: {
-        sm: "100%",
-        md: "100%",
-        lg: "640px",
-        xl: "640px",
+        sm: '100%',
+        md: '100%',
+        lg: '640px',
+        xl: '640px',
       },
     },
     extend: {},
   },
   variants: {
-    extend: { opacity: ["disabled"] },
+    extend: { opacity: ['disabled'], backgroundColor: ['disabled'] },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

@@ -9,7 +9,8 @@
     "activeTab",
     "tabs",
     "declarativeContent",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "action": {
     "default_popup": "index.html?page=Popup",
