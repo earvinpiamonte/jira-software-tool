@@ -337,7 +337,7 @@ const Options = ({ manifest }: any) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Noel Earvin Piamonte
+                earvinpiamonte.com
               </a>
               .
             </p>
