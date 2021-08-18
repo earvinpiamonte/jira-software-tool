@@ -145,7 +145,7 @@ const Options = ({ manifest }: any) => {
       <Modal show={modalIsOpen} onClose={() => setModalIsOpen(false)}>
         <div className="flex items-center mb-4">
           <div className="flex-grow">
-            <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
+            <InformationCircleIcon className="w-5 h-5 text-gray-900 dark:text-gray-300 inline-block mr-1" />
             <span className="align-middle font-medium">
               Custom copy to clipboard button
             </span>
@@ -231,7 +231,7 @@ const Options = ({ manifest }: any) => {
                       }}
                       aria-label="Open Button Label modal"
                     >
-                      <InformationCircleIcon className="w-5 h-5" />
+                      <InformationCircleIcon className="w-5 h-5 text-gray-900 dark:text-gray-300" />
                     </button>
                   </div>
                 </div>
@@ -287,7 +287,7 @@ const Options = ({ manifest }: any) => {
                       }}
                       aria-label="Open Custom value modal"
                     >
-                      <InformationCircleIcon className="w-5 h-5" />
+                      <InformationCircleIcon className="w-5 h-5 text-gray-900 dark:text-gray-300" />
                     </button>
                   </div>
                 </div>
