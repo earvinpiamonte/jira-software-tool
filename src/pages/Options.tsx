@@ -363,7 +363,7 @@ const Options = ({ manifest }: any) => {
               >
                 RealFaviconGenerator.net
               </a>
-              . This project nor I is affiliated with Jira or Atlassian in any
+              . This project nor I are affiliated with Jira or Atlassian in any
               way.
             </p>
           </div>
