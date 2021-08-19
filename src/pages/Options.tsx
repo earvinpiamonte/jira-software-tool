@@ -158,7 +158,7 @@ const Options = ({ manifest }: any) => {
         </div>
         <div className="mb-4">{modalContent}</div>
       </Modal>
-      <section className="py-6 dark:bg-gray-900 dark:text-gray-300 min-h-screen text-base">
+      <section className="py-6 bg-gray-100 dark:bg-gray-900 dark:text-gray-300 min-h-screen text-base">
         <div className="md:container md:mx-auto px-4">
           <div className="mb-4 border rounded-md px-4 pt-8 pb-10 bg-white dark:bg-gray-800 dark:border-gray-700">
             <div className="mb-8">
@@ -178,7 +178,7 @@ const Options = ({ manifest }: any) => {
             <form className="mb-16" onSubmit={handleFormSubmit}>
               <FormGroup>
                 <div className="mb-1">
-                  <label htmlFor={inputTheme}>Theme</label>
+                  <label htmlFor={inputTheme}>Extension theme</label>
                 </div>
                 <div className="mb-1">
                   <label htmlFor="light">
@@ -224,8 +224,8 @@ const Options = ({ manifest }: any) => {
                         openModal(
                           <p>
                             Set a custom copy to clipboard button on the
-                            dropdown menu. This button can be hidden on the
-                            dropdown by setting the label empty.
+                            dropdown menu. This button can be hidden by setting
+                            the label empty.
                           </p>
                         );
                       }}
@@ -333,7 +333,7 @@ const Options = ({ manifest }: any) => {
               This project is written, designed and built by{' '}
               <a
                 href={`https://www.earvinpiamonte.com/`}
-                className="underline text-blue-600 font-semibold"
+                className="hover:underline text-blue-600 font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -348,7 +348,7 @@ const Options = ({ manifest }: any) => {
               Jira Software images are owned by{' '}
               <a
                 href={`https://www.atlassian.com/`}
-                className="underline text-blue-600 font-semibold"
+                className="hover:underline text-blue-600 font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -357,7 +357,7 @@ const Options = ({ manifest }: any) => {
               and generated using{' '}
               <a
                 href={`https://realfavicongenerator.net/`}
-                className="underline text-blue-600 font-semibold"
+                className="hover:underline text-blue-600 font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
